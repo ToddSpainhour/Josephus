@@ -8,7 +8,7 @@ namespace Josephus.Tests
 
         // testing is all about repeating yourself with only small changes
 
-        [Fact]
+        [Fact] // fact attribute that sit atop a method
         public void one_person_with_an_interval_of_one_then_only_person_should_survive()
         {
             //every tests is made up of three parts
@@ -80,6 +80,27 @@ namespace Josephus.Tests
             // Assert
             Assert.Equal(expectedResult, solution);
         }
+
+
+
+        [Theory] // theories can take in parameters. Can test something with many different options
+        [InlineData(137,2,19)]
+        [InlineData(1, 1, 2)]
+        [InlineData(2, 1, 1)]
+        [InlineData(7, 3, 7)]
+
+        public void given_a_killing_number_and_a_number_of_people_the_correct_solution_is_returned(int numberOfPeople, int killingInterval, int expectedResult)
+        {
+            
+            var solver = new JosephusSolver();
+
+            // Act
+            var solution = solver.Solve(numberOfPeople, killingInterval);
+
+            // Assert
+            Assert.Equal(expectedResult, solution);
+        }
+
     }
 }
 
